@@ -55,6 +55,47 @@ dialog.editor-dialog{width:min(1280px,96vw);height:min(940px,94dvh);max-width:no
 @media print{.wanted-layout{grid-template-columns:.8fr 1.25fr;gap:5mm}.wanted-poster{padding:4mm 3mm;max-width:none}.wanted-title{font-size:46px}.wanted-photo{height:69mm}.wanted-poster h2{font-size:1.8em}.wanted-bounty{font-size:1.45em}.bestiary-heading{grid-template-columns:1fr 33mm;gap:5mm}.bestiary-photo{height:36mm}.bestiary-profile-grid{grid-template-columns:1.15fr 1fr;gap:5mm}.marine-heading{padding:4mm 5mm}.marine-profile{grid-template-columns:1.65fr .8fr;gap:5mm}.marine-photo{height:58mm}.marine-sidebar{display:block}.marine-seal{width:17mm;height:17mm}.marine-image-caption{font-size:.6em}.journal-profile{grid-template-columns:.8fr 1.45fr;gap:7mm}.journal-profile>aside{display:block}.journal-photo{height:60mm}.journal-heading h2{font-size:3em}.tactical-profile{grid-template-columns:1.55fr .8fr}.tactical-profile>aside{display:block}.tactical-photo{height:60mm}.tactical-combat{grid-template-columns:.75fr 1.55fr;gap:5mm}.tactical-combat .tech-grid{grid-template-columns:1fr 1fr}.tactical-combat .paper-traits{grid-template-columns:1fr}.layout-tactical .module-grid{grid-template-columns:repeat(3,1fr)}.extra-page-blocks,.flat-actions,.flat-traits{grid-template-columns:1fr 1fr}.layout-bestiary .extra-page-blocks{grid-template-columns:1fr}.paper-banner,.wanted-poster,.model-portrait,.journal-photo-frame,.flat-action,.extra-page-blocks>.paper-block{break-inside:avoid;page-break-inside:avoid}body.print-economy .sheet-page{--paper:#fff!important;--paper2:#fff!important;--paperInk:#171717!important;--paperMuted:#555555!important;--paperLine:#bcbcbc!important;--paperAccent:#333333!important;--banner:#f0f0f0!important;--bannerInk:#111111!important}}
 
 .preview-head{gap:8px;flex-wrap:wrap}.preview-design-actions{gap:6px}
+/* Text formatting stays inside each field and follows the sheet's palette. */
+.rich-editor{min-width:0;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--bg)}
+.rich-editor:focus-within{border-color:var(--accent);box-shadow:0 0 0 2px #d7b56d16}
+.rich-toolbar{display:flex;align-items:center;flex-wrap:wrap;gap:4px;padding:5px 6px;border-bottom:1px solid var(--line);background:var(--panel2)}
+.rich-tools-group{display:flex;gap:2px;align-items:center;border-right:1px solid var(--line);padding-right:4px}
+.rich-format-button,.rich-view-button{border:1px solid transparent;background:transparent;border-radius:4px;min-width:30px;min-height:32px;padding:4px;color:var(--ink);font-size:14px;line-height:1;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
+.rich-format-button:hover,.rich-view-button:hover{background:var(--bg);border-color:var(--line)}
+.rich-format-button[aria-pressed=true],.rich-view-button[aria-pressed=true]{background:var(--accent);color:var(--accentInk);border-color:var(--accent)}
+.rich-format-button:focus-visible,.rich-view-button:focus-visible{outline-offset:-2px}
+.rich-format-button svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round}
+.rich-format-button svg circle{fill:currentColor;stroke:none}
+.rich-view-button{font-size:10px;padding:5px 7px;margin-left:auto;white-space:nowrap}
+.rich-marker{font-weight:750;background:#f2d57e;color:#342b14;padding:2px 3px;border-radius:2px}
+.rich-number{font:700 14px Georgia,serif}.rich-heading-icon{font:700 16px Georgia,serif}.rich-quote-icon{font:700 24px/18px Georgia,serif}.rich-clear-icon{font-size:13px}
+.editor-dialog .field .rich-editor textarea{display:block;border:0;border-radius:0;background:transparent;box-shadow:none;margin:0;padding:11px 12px;min-height:115px;resize:vertical;width:100%}
+.rich-preview{min-height:115px;padding:11px 12px;font-size:13px;color:var(--ink);overflow-wrap:anywhere;outline:none;max-height:460px;overflow:auto}
+.rich-preview:focus-visible{box-shadow:inset 0 0 0 2px var(--accent)}
+.rich-preview[hidden],.rich-editor textarea[hidden]{display:none!important}
+.rich-text{line-height:1.65;overflow-wrap:anywhere;min-width:0}
+.rich-text p,.sheet-page .rich-text p{font-size:inherit;line-height:inherit;margin:0;font-family:inherit}
+.rich-text p+p,.sheet-page .rich-text p+p{margin-top:.65em}
+.rich-text ul,.rich-text ol{margin:.5em 0;padding:0 0 0 1.5em;list-style-position:outside}
+.rich-text ul{list-style-type:disc}.rich-text ol{list-style-type:decimal}
+.rich-text li{padding-left:.1em;margin:.2em 0}
+.rich-text blockquote{margin:.6em 0;padding:.15em 0 .15em .85em;border-left:3px solid currentColor;font-style:italic;opacity:.9}
+.rich-text .rich-heading{font-weight:750;font-size:1.08em;line-height:1.4;font-family:inherit;margin:.85em 0 .4em;color:inherit;letter-spacing:.015em;text-transform:none;border:0;padding:0}
+.rich-text .rich-heading:first-child{margin-top:0}
+.rich-text>:first-child{margin-top:0}.rich-text>:last-child{margin-bottom:0}
+.rich-text mark,.quote mark,.model-quote mark{background:#f2d57e;color:#342b14;padding:0 .12em;border-radius:2px;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.rich-text u,.quote u,.model-quote u{text-underline-offset:.14em;text-decoration-thickness:.08em}
+.rich-empty{color:var(--muted);font-style:italic}
+.paper-block>.rich-text,.tech-card>.rich-text{font-size:.81em}
+.paper-trait>.rich-text,.attack-line>.rich-text{font-size:.75em}
+.module>.rich-text{font-size:.78em}.flat-action>.rich-text{font-size:.8em}
+.flat-trait{font-size:.83em;line-height:1.7}.flat-trait>b{display:block;margin-bottom:.15em}
+.paper-banner>.rich-text{margin-top:.15em;opacity:.9}.paper-note>.rich-text{margin-top:.25em}
+.layout-journal .tech-card>.rich-text,.layout-journal .paper-block>.rich-text{font-family:var(--serif);font-size:.92em;line-height:1.9}
+.layout-journal .extra-page-blocks .paper-block>.rich-text{font-size:.95em}
+@media(max-width:600px){.rich-format-button{min-width:32px;min-height:36px}.rich-toolbar{gap:4px 3px}.rich-view-button{min-height:36px;font-size:11px}.rich-preview{font-size:16px}.rich-tools-group{padding-right:3px}}
+@media print{.paper-block>.rich-text,.tech-card>.rich-text{font-size:.85em}.layout-journal .tech-card>.rich-text,.layout-journal .paper-block>.rich-text{font-size:.92em}.layout-journal .extra-page-blocks .paper-block>.rich-text{font-size:.95em}.rich-text li{break-inside:avoid;page-break-inside:avoid}}
+
 </style>
 </head>
 <body data-theme="dossie">
@@ -144,7 +185,58 @@ const signed = v => num(v)>=0?'+'+num(v):String(num(v));
 const mod = v => Math.floor((num(v,10)-10)/2);
 const clone = v => JSON.parse(JSON.stringify(v));
 const icon = (name,cls='icon') => `<svg class="${cls}" aria-hidden="true"><use href="#i-${name}"/></svg>`;
-const rich = v => esc(v).replace(/\*\*([^*\n]+)\*\*/g,'<strong>$1</strong>').replace(/\n/g,'<br>');
+// Text is stored as plain text with a small, escaped formatting syntax.
+function richInline(value){
+ const source=String(value??'').replace(/\r\n?/g,'\n'),tags={'**':'strong','*':'em','__':'u','~~':'s','==':'mark'};
+ const stack=[{marker:'',parts:[]}];
+ const append=html=>stack[stack.length-1].parts.push(html);
+ function delimiter(marker,canOpen,canClose){
+  const top=stack[stack.length-1];
+  if(top.marker===marker&&canClose){stack.pop();append(`<${tags[marker]}>${top.parts.join('')}</${tags[marker]}>`);return;}
+  if(canOpen&&stack.length<12&&!stack.some(frame=>frame.marker===marker)){stack.push({marker,parts:[]});return;}
+  append(esc(marker));
+ }
+ for(let i=0;i<source.length;){
+  const ch=source[i];
+  if(ch==='\\'&&/[\\*_~=]/.test(source[i+1]||'')){append(esc(source[i+1]));i+=2;continue;}
+  if(ch==='\n'){append('<br>');i++;continue;}
+  if(ch==='*'){
+   let end=i+1;while(source[end]==='*')end++;
+   const count=end-i,canOpen=end<source.length&&!/\s/.test(source[end]),canClose=i>0&&!/\s/.test(source[i-1]);
+   if(count===3){const top=stack[stack.length-1].marker;const sequence=canClose&&top==='*'?['*','**']:canClose&&top==='**'?['**','*']:['**','*'];sequence.forEach(marker=>delimiter(marker,canOpen,canClose));}
+   else if(count<=2)delimiter('*'.repeat(count),canOpen,canClose);
+   else append('*'.repeat(count));
+   i=end;continue;
+  }
+  const pair=source.slice(i,i+2);
+  if(Object.hasOwn(tags,pair)){delimiter(pair,i+2<source.length&&!/\s/.test(source[i+2]),i>0&&!/\s/.test(source[i-1]));i+=2;continue;}
+  let end=i+1;while(end<source.length&&!/[\\\n*_~=]/.test(source[end]))end++;
+  append(esc(source.slice(i,end)));i=end;
+ }
+ while(stack.length>1){const frame=stack.pop();append(esc(frame.marker)+frame.parts.join(''));}
+ return stack[0].parts.join('');
+}
+const rich=richInline;
+function richBlocks(value){
+ const lines=String(value??'').replace(/\r\n?/g,'\n').split('\n'),out=[];
+ const type=line=>/^\s*[-+*•]\s+/.test(line)?'ul':/^\s*\d{1,4}[.)]\s+/.test(line)?'ol':/^\s*>\s?/.test(line)?'quote':/^\s*#{1,3}\s+/.test(line)?'heading':'text';
+ for(let i=0;i<lines.length;){
+  if(!lines[i].trim()){i++;continue;}
+  const kind=type(lines[i]);
+  if(kind==='heading'){out.push(`<h4 class="rich-heading">${richInline(lines[i].replace(/^\s*#{1,3}\s+/,''))}</h4>`);i++;continue;}
+  if(kind==='ul'||kind==='ol'){
+   const items=[],start=kind==='ol'?Math.max(1,parseInt(lines[i],10)||1):1;
+   while(i<lines.length&&lines[i].trim()&&type(lines[i])===kind){items.push(`<li>${richInline(lines[i].replace(kind==='ul'?/^\s*[-+*•]\s+/:/^\s*\d{1,4}[.)]\s+/,''))}</li>`);i++;}
+   out.push(`<${kind}${kind==='ol'&&start!==1?` start="${start}"`:''}>${items.join('')}</${kind}>`);continue;
+  }
+  const paragraph=[];
+  while(i<lines.length&&lines[i].trim()&&type(lines[i])===kind){paragraph.push(kind==='quote'?lines[i].replace(/^\s*>\s?/,''):lines[i]);i++;}
+  const html=`<p>${richInline(paragraph.join('\n'))}</p>`;
+  out.push(kind==='quote'?`<blockquote>${html}</blockquote>`:html);
+ }
+ return out.join('');
+}
+const richText=value=>`<div class="rich-text">${richBlocks(value)}</div>`;
 const join = a => a.filter(v=>v!=='' && v!==null && v!==undefined).map(esc).join(' · ');
 const fmtValue = v => v===''||v===null||v===undefined?'—':esc(v);
 const levelProf = level => 2 + Math.floor((clamp(Math.floor(num(level,1)),1,20)-1)/4);
@@ -395,14 +487,122 @@ async function persist(){
 }
 function touch(){const r=current();if(r)r.updatedAt=new Date().toISOString();scheduleSave();}
 function choice(options,value){return options.map(([v,l])=>`<option value="${esc(v)}"${String(v)===String(value)?' selected':''}>${esc(l)}</option>`).join('');}
+const INLINE_FORMATS={bold:'**',italic:'*',underline:'__',strike:'~~',highlight:'=='};
+const FORMAT_LABELS={bold:'Negrito (Ctrl+B)',italic:'Itálico (Ctrl+I)',underline:'Sublinhado (Ctrl+U)',strike:'Tachado',highlight:'Marca-texto',bullet:'Lista com marcadores',number:'Lista numerada',heading:'Subtítulo',quote:'Citação',clear:'Remover formatação do trecho ou do campo inteiro',view:'Ver texto formatado'};
+const FORMAT_GLYPHS={bold:'<b>B</b>',italic:'<i>I</i>',underline:'<u>U</u>',strike:'<s>S</s>',highlight:'<span class="rich-marker">A</span>',bullet:'<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M8 5h10M8 10h10M8 15h10"/><circle cx="3" cy="5" r="1"/><circle cx="3" cy="10" r="1"/><circle cx="3" cy="15" r="1"/></svg>',number:'<span class="rich-number">1.</span>',heading:'<span class="rich-heading-icon">H</span>',quote:'<span class="rich-quote-icon">❞</span>',clear:'<span class="rich-clear-icon">T×</span>'};
+function formattingToolbar(label,inlineOnly=false){
+ const groups=[['bold','italic','underline','strike','highlight'],inlineOnly?[]:['bullet','number','heading','quote'],['clear']];
+ return `<div class="rich-toolbar" role="toolbar" aria-label="Formatação de ${esc(label)}">${groups.filter(g=>g.length).map(g=>`<div class="rich-tools-group">${g.map(key=>`<button type="button" class="rich-format-button" data-format="${key}" title="${FORMAT_LABELS[key]}" aria-label="${FORMAT_LABELS[key]}"${Object.hasOwn(INLINE_FORMATS,key)?' aria-pressed="false"':''}>${FORMAT_GLYPHS[key]}</button>`).join('')}</div>`).join('')}<button type="button" class="rich-view-button" data-format="view" aria-pressed="false" title="Ver o resultado da formatação">Ver texto</button></div>`;
+}
+function starCount(value,from,direction){let count=0;for(let i=from;i>=0&&i<value.length&&value[i]==='*';i+=direction)count++;return count;}
+function markerPresent(left,right,marker){return marker==='*'?left%2===1&&right%2===1:marker==='**'?left>=2&&right>=2:false;}
+function hasEdgeMarker(value,marker){if(value.length<=marker.length*2)return false;if(marker[0]==='*')return markerPresent(starCount(value,0,1),starCount(value,value.length-1,-1),marker);return value.startsWith(marker)&&value.endsWith(marker);}
+function outsideMarker(value,start,end,marker){if(marker[0]==='*')return markerPresent(starCount(value,start-1,-1),starCount(value,end,1),marker);return value.slice(Math.max(0,start-marker.length),start)===marker&&value.slice(end,end+marker.length)===marker;}
+function selectedLineRange(value,start,end){const first=start===0?0:value.lastIndexOf('\n',start-1)+1;let lastAt=end>start&&value[end-1]==='\n'?end-1:end;const nl=value.indexOf('\n',lastAt);return[first,nl===-1?value.length:nl];}
+function splitLinePrefix(line){const m=line.match(/^(\s*(?:(?:[-+*•]|\d{1,4}[.)]|#{1,3}|>)\s+)?)(.*?)([ \t]*)$/);return m?{prefix:m[1],body:m[2],tail:m[3]}:{prefix:'',body:line,tail:''};}
+function updateFormatButtons(input){
+ const editor=input.closest('.rich-editor');if(!editor)return;
+ const value=input.value,start=input.selectionStart,end=input.selectionEnd,selected=value.slice(start,end).trim();
+ editor.querySelectorAll('[data-format]').forEach(button=>{
+  const key=button.dataset.format,marker=INLINE_FORMATS[key];
+  if(marker){const active=outsideMarker(value,start,end,marker)||hasEdgeMarker(selected,marker);button.setAttribute('aria-pressed',String(active));}
+ });
+}
+function commitRichEdit(input,start,end,replacement,selectionStart,selectionEnd){
+ const scroll=input.scrollTop;
+ input.setRangeText(replacement,start,end,'preserve');input.focus({preventScroll:true});
+ input.setSelectionRange(selectionStart,selectionEnd);input.scrollTop=scroll;
+ input.dispatchEvent(new Event('input',{bubbles:true}));updateFormatButtons(input);
+}
+function applyInlineFormat(input,marker){
+ const value=input.value;let start=input.selectionStart,end=input.selectionEnd;
+ if(outsideMarker(value,start,end,marker)){
+  commitRichEdit(input,start-marker.length,end+marker.length,value.slice(start,end),start-marker.length,end-marker.length);return;
+ }
+ const selected=value.slice(start,end);
+ if(selected.includes('\n')||(start===0||value[start-1]==='\n')&&/^(?:[-+*•]|\d{1,4}[.)]|#{1,3}|>)\s+/.test(selected)){
+  const lines=selected.split('\n').map(splitLinePrefix),bodies=lines.filter(l=>l.body.trim());
+  const remove=bodies.length>0&&bodies.every(l=>hasEdgeMarker(l.body,marker));
+  const replacement=lines.map(l=>l.body.trim()?l.prefix+(remove?l.body.slice(marker.length,-marker.length):hasEdgeMarker(l.body,marker)?l.body:marker+l.body+marker)+l.tail:l.prefix+l.body+l.tail).join('\n');
+  commitRichEdit(input,start,end,replacement,start,start+replacement.length);return;
+ }
+ const leading=selected.match(/^\s*/)[0].length,trailing=selected.match(/\s*$/)[0].length;
+ if(selected.trim()){start+=leading;end-=trailing;}
+ const body=value.slice(start,end);
+ if(hasEdgeMarker(body,marker)){
+  const clean=body.slice(marker.length,-marker.length);commitRichEdit(input,start,end,clean,start,start+clean.length);return;
+ }
+ const text=body.trim()?body:'texto';commitRichEdit(input,start,end,marker+text+marker,start+marker.length,start+marker.length+text.length);
+}
+function lineKind(line){return /^\s*[-+*•]\s+/.test(line)?'bullet':/^\s*\d{1,4}[.)]\s+/.test(line)?'number':/^\s*#{1,3}\s+/.test(line)?'heading':/^\s*>\s?/.test(line)?'quote':'';}
+function applyBlockFormat(input,kind){
+ const value=input.value,[start,end]=selectedLineRange(value,input.selectionStart,input.selectionEnd),lines=value.slice(start,end).split('\n');
+ const nonempty=lines.filter(l=>l.trim()),remove=nonempty.length>0&&nonempty.every(l=>lineKind(l)===kind);let count=0;
+ const replacement=lines.map(line=>{
+  const body=line.replace(/^\s*(?:(?:[-+*•]|\d{1,4}[.)]|#{1,3})\s+|>\s?)/,'');
+  if(remove)return body;if(!body.trim()&&lines.length>1)return body;
+  count++;return({bullet:'- ',number:count+'. ',heading:'### ',quote:'> '})[kind]+body;
+ }).join('\n');
+ const caret=input.selectionStart===input.selectionEnd&&lines.length===1;
+ commitRichEdit(input,start,end,replacement,caret?start+replacement.length:start,start+replacement.length);
+}
+function removeFormatting(input){
+ const value=input.value;let start=input.selectionStart,end=input.selectionEnd;
+ if(start===end){start=0;end=value.length;}
+ for(let i=0;i<12;i++){
+  const marker=Object.values(INLINE_FORMATS).find(m=>outsideMarker(value,start,end,m));
+  if(!marker)break;start-=marker.length;end+=marker.length;
+ }
+ const replacement=value.slice(start,end).split('\n').map(line=>{
+  const holder=document.createElement('div');holder.innerHTML=richInline(line.replace(/^\s*(?:(?:[-+*•]|\d{1,4}[.)]|#{1,3})\s+|>\s?)/,''));return holder.textContent;
+ }).join('\n');
+ commitRichEdit(input,start,end,replacement,start,start+replacement.length);
+}
+function formatText(input,kind){
+ if(!input||input.hidden)return;
+ if(INLINE_FORMATS[kind])applyInlineFormat(input,INLINE_FORMATS[kind]);
+ else if(['bullet','number','heading','quote'].includes(kind))applyBlockFormat(input,kind);
+ else if(kind==='clear')removeFormatting(input);
+}
+function toggleRichPreview(editor){
+ const input=editor.querySelector('textarea'),preview=editor.querySelector('.rich-preview'),button=editor.querySelector('[data-format=view]');
+ const show=preview.hidden;
+ if(show)preview.innerHTML=(input.dataset.inline==='1'?richInline(input.value):richBlocks(input.value))||'<p class="rich-empty">O texto formatado aparecerá aqui.</p>';
+ input.hidden=show;preview.hidden=!show;button.textContent=show?'Editar texto':'Ver texto';button.setAttribute('aria-pressed',String(show));
+ editor.querySelectorAll('[data-format]:not([data-format=view])').forEach(b=>b.disabled=show);
+ if(show)preview.focus({preventScroll:true});else{input.focus({preventScroll:true});updateFormatButtons(input);}
+}
+document.addEventListener('mousedown',e=>{if(e.target.closest('.rich-format-button'))e.preventDefault();});
+document.addEventListener('click',e=>{
+ const button=e.target.closest('[data-format]');if(!button||button.disabled)return;
+ const editor=button.closest('.rich-editor');if(!editor)return;
+ if(button.dataset.format==='view')toggleRichPreview(editor);else formatText(editor.querySelector('textarea'),button.dataset.format);
+});
+['input','select','keyup','click'].forEach(type=>document.addEventListener(type,e=>{if(e.target.matches('textarea[data-rich]'))updateFormatButtons(e.target);}));
+document.addEventListener('keydown',e=>{
+ const input=e.target;if(!input.matches('textarea[data-rich]'))return;
+ if((e.ctrlKey||e.metaKey)&&!e.altKey){const kind={b:'bold',i:'italic',u:'underline'}[e.key.toLowerCase()];if(kind){e.preventDefault();formatText(input,kind);return;}}
+ if(e.key!=='Enter'||e.shiftKey||e.ctrlKey||e.metaKey||e.altKey||input.dataset.inline==='1'||input.selectionStart!==input.selectionEnd)return;
+ const value=input.value,caret=input.selectionStart,start=value.lastIndexOf('\n',caret-1)+1,line=value.slice(start,caret),match=line.match(/^(\s*)([-+*•]|\d{1,4}[.)]|>)\s+(.*)$/);
+ if(!match)return;
+ e.preventDefault();
+ if(!match[3].trim()){commitRichEdit(input,start,caret,'',start,start);return;}
+ const mark=/^\d/.test(match[2])?(Math.min(9999,parseInt(match[2],10)+1)+'.'):match[2];
+ const addition='\n'+match[1]+mark+' ';commitRichEdit(input,caret,caret,addition,caret+addition.length,caret+addition.length);
+});
+
 function field(label,path,opts={}){
  const r=current(),value=getPath(r,path)??'',wide=opts.full?' full':'';
  let control='';const common=`data-path="${esc(path)}"${opts.num?' data-number="1"':''}${opts.min!==undefined?` min="${opts.min}"`:''}${opts.max!==undefined?` max="${opts.max}"`:''}${opts.placeholder?` placeholder="${esc(opts.placeholder)}"`:''}`;
- if(opts.textarea)control=`<textarea ${common} rows="${opts.rows||3}">${esc(value)}</textarea>`;
- else if(opts.options)control=`<select ${common}>${choice(opts.options,value)}</select>`;
+ if(opts.textarea){
+  const id='rich-input-'+path.replace(/[^a-z0-9_-]/gi,'-'),inlineOnly=path==='quote';
+  return `<div class="field rich-field${wide}"><label for="${id}">${esc(label)}</label><div class="rich-editor">${formattingToolbar(label,inlineOnly)}<textarea id="${id}" ${common} data-rich="1"${inlineOnly?' data-inline="1"':''} rows="${opts.rows||3}" aria-label="${esc(label)}">${esc(value)}</textarea><div class="rich-preview rich-text" role="region" aria-label="Prévia de ${esc(label)}" tabindex="0" hidden></div></div>${opts.hint?`<small>${esc(opts.hint)}</small>`:''}</div>`;
+ }
+ if(opts.options)control=`<select ${common}>${choice(opts.options,value)}</select>`;
  else control=`<input type="${opts.num?'number':opts.type||'text'}" value="${esc(value)}" ${common}${opts.step?` step="${opts.step}"`:''}>`;
  return `<label class="field${wide}"><span>${esc(label)}</span>${control}${opts.hint?`<small>${esc(opts.hint)}</small>`:''}</label>`;
 }
+
 const check=(label,path)=>`<label class="check-line"><input type="checkbox" data-path="${esc(path)}"${getPath(current(),path)?' checked':''}>${esc(label)}</label>`;
 function section(label,body){return `<section class="form-section"><h3 class="section-label">${esc(label)}</h3>${body}</section>`;}
 function formCardHead(title,key,i){return `<div class="form-card-head"><strong>${esc(title)}</strong><div class="row"><button data-action="move-item" data-list="${key}" data-index="${i}" data-direction="-1" title="Mover para cima" aria-label="Mover para cima">↑</button><button data-action="move-item" data-list="${key}" data-index="${i}" data-direction="1" title="Mover para baixo" aria-label="Mover para baixo">↓</button><button data-action="remove-item" data-list="${key}" data-index="${i}" title="Remover" aria-label="Remover ${esc(title)}">×</button></div></div>`;}
@@ -417,7 +617,7 @@ function renderNumbers(){
 }
 function renderArsenal(){const r=current();return `<p class="hint">Registre o dano completo, incluindo o bônus. O acerto pode usar atributo + proficiência + bônus extra, ou um valor manual.</p>`+r.attacks.map((a,i)=>`<div class="form-card">${formCardHead('Ataque '+(i+1),'attacks',i)}${field('Nome da arma / ataque',`attacks.${i}.name`)}<div class="fields">${field('Atributo',`attacks.${i}.ability`,{options:ABILITIES.map(([k,a,l])=>[k,l])})}${field('Bônus extra no acerto',`attacks.${i}.bonus`,{num:true})}</div>${check('Adicionar proficiência ao acerto',`attacks.${i}.proficient`)}${field('Acerto manual (opcional)',`attacks.${i}.override`,{num:true,placeholder:'Automático'})}<p class="hint">Acerto final: <b data-hit-out="${i}">${signed(attackHit(r,a))}</b></p><div class="fields">${field('Dano completo',`attacks.${i}.damage`,{placeholder:'1d10+5'})}${field('Tipo de dano',`attacks.${i}.damageType`,{placeholder:'Perfurante'})}${field('Alcance',`attacks.${i}.range`,{placeholder:'12/24 m'})}${field('Crítico',`attacks.${i}.critical`,{placeholder:'19–20'})}</div>${field('Efeito / observações',`attacks.${i}.description`,{textarea:true})}</div>`).join('')+addBtn('attacks','Adicionar ataque');}
 function renderAbilities(){const r=current();return section('Passivas e características',r.traits.map((t,i)=>`<div class="form-card">${formCardHead('Passiva '+(i+1),'traits',i)}${field('Nome',`traits.${i}.name`)}${field('Efeito',`traits.${i}.description`,{textarea:true})}</div>`).join('')+addBtn('traits','Adicionar passiva'))+section('Técnicas e ações',r.actions.map((a,i)=>`<div class="form-card">${formCardHead('Ação '+(i+1),'actions',i)}${field('Nome',`actions.${i}.name`)}<div class="fields">${field('Tipo de ação',`actions.${i}.category`,{options:Object.entries(CATEGORIES)})}${field('Custo',`actions.${i}.cost`,{placeholder:'4 PP / 2 PN'})}${field('Dano completo',`actions.${i}.damage`,{placeholder:'4d10'})}${field('Tipo de dano',`actions.${i}.damageType`)}${field('Alcance / área',`actions.${i}.range`)}${field('Salvaguarda / acerto',`actions.${i}.save`,{placeholder:'CON CD 16'})}</div>${field('Usos / recarga',`actions.${i}.usage`,{placeholder:'1/combate · recarga 5–6'})}${field('Efeito',`actions.${i}.description`,{textarea:true,rows:4})}</div>`).join('')+addBtn('actions','Adicionar técnica ou ação'))+`<details class="form-section"${r.modules.length?' open':''}><summary class="section-label" style="cursor:pointer">Partes destrutíveis / módulos</summary><p class="hint">Cada parte tem PV, CR e um efeito ao ser destruída. Aplique os efeitos descritos manualmente.</p><div class="module-editor-list">${r.modules.map((m,i)=>`<div class="form-card">${formCardHead('Módulo '+(i+1),'modules',i)}${field('Nome da parte',`modules.${i}.name`)}<div class="fields three">${field('CR',`modules.${i}.cr`,{num:true,min:0})}${field('PV máximo',`modules.${i}.hpMax`,{num:true,min:0})}${field('PV atual',`modules.${i}.hpCurrent`,{num:true,min:0})}</div>${field('Ao destruir / funcionamento',`modules.${i}.description`,{textarea:true})}${check('Parte destruída',`modules.${i}.destroyed`)}</div>`).join('')}${addBtn('modules','Adicionar parte destrutível')}</div></details>`;}
-function renderStory(){return `<p class="hint">Quebras de linha organizam o texto. Use **duplo asterisco** para destacar palavras.</p>`+section('Perfil e narrativa',field('Personalidade / presença','personality',{textarea:true,rows:4})+field('Ganchos / desbloqueio','hooks',{textarea:true,rows:4})+field('História / contexto','background',{textarea:true,rows:4}))+section('Durante a sessão',field('Tática / sequência de combate','tactics',{textarea:true,rows:4})+field('Efeito na tripulação / suporte','companionEffect',{textarea:true})+field('Tesouros / recompensas','treasure',{textarea:true})+field('Notas reservadas do narrador','gmNotes',{textarea:true,hint:'Visíveis aqui. Ficam fora da impressão, salvo se você marcar a opção no menu PDF.'}));}
+function renderStory(){return `<p class="hint">Selecione um trecho e use a barra para formatar. Atalhos: Ctrl+B para negrito, Ctrl+I para itálico e Ctrl+U para sublinhado. “Ver texto” mostra o resultado.</p>`+section('Perfil e narrativa',field('Personalidade / presença','personality',{textarea:true,rows:4})+field('Ganchos / desbloqueio','hooks',{textarea:true,rows:4})+field('História / contexto','background',{textarea:true,rows:4}))+section('Durante a sessão',field('Tática / sequência de combate','tactics',{textarea:true,rows:4})+field('Efeito na tripulação / suporte','companionEffect',{textarea:true})+field('Tesouros / recompensas','treasure',{textarea:true})+field('Notas reservadas do narrador','gmNotes',{textarea:true,hint:'Visíveis aqui. Ficam fora da impressão, salvo se você marcar a opção no menu PDF.'}));}
 function renderEditor(){
  const openPages=$$('#editorBody details[data-extra-page][open]').map(e=>e.dataset.extraPage);
  $('#editorTabs').innerHTML=TABS.map(([key,label])=>`<button type="button" data-tab="${key}" class="${activeTab===key?'active':''}" aria-current="${activeTab===key?'page':'false'}">${icon(TAB_INFO[key][0])}<span><strong>${label}</strong><small>${({profile:'Identidade e lugar',numbers:'Atributos e defesas',arsenal:'Armas e ataques',abilities:'Passivas e técnicas',story:'Ganchos e notas',pages:'Modelos e páginas',visual:'Imagem e cores'})[key]}</small></span></button>`).join('');
@@ -442,32 +642,32 @@ function stats(r,combat=false){const vals=combat?[['PV',r.hpMax],['PP',r.ppMax],
 function attributes(r){return `<div class="paper-attrs">${ABILITIES.map(([k,a])=>`<div class="paper-attr"><small>${a}</small><b>${r.abilities[k]} <em>(${signed(mod(r.abilities[k]))})</em></b></div>`).join('')}</div>`;}
 function training(r){const trainedSaves=ABILITIES.filter(([k])=>r.saves[k].trained||r.saves[k].bonus).map(([k,a])=>a+' '+signed(saveTotal(r,k)));const trainedSkills=r.skills.filter(s=>s.rank||s.bonus).map(s=>s.name+' '+signed(skillTotal(r,s)));return `<div class="training-line"><strong>Salvaguardas:</strong> ${trainedSaves.length?esc(trainedSaves.join(', ')):'—'}<br><strong>Perícias:</strong> ${trainedSkills.length?esc(trainedSkills.join(', ')):'—'}<br><strong>Iniciativa:</strong> ${signed(initiative(r))} <span class="sep">·</span> <strong>Sentido passivo:</strong> ${passive(r)}${r.extraMax!==''?` <span class="sep">·</span> <strong>${esc(r.extraLabel||'Recurso')}:</strong> ${fmtValue(r.extraMax)}`:''}</div>`;}
 function portrait(r){const src=imageSrc(r);return `<div class="sheet-side"><div class="portrait-card"><div class="portrait-art">${src?`<img src="${esc(src)}" alt="Retrato de ${esc(r.name)}" style="object-fit:${r.imageFit};object-position:50% ${clamp(r.imagePosition,0,100)}%">`:`<div class="placeholder">${icon('compass')}</div>`}</div><div class="portrait-caption"><h3>${esc(r.name)}</h3><p>${r.realName?esc(r.realName)+'<br>':''}${join([r.type==='npc'||r.type==='companion'?'Lv '+r.level:'ND '+r.nd,r.species,r.age?String(r.age)+' anos':''])}<br>${esc(r.style)}</p></div></div>${r.quote?`<p class="quote">“${rich(r.quote)}”</p>`:''}<div class="side-facts">${[['Papel',r.role],['Origem',r.island],['Facção',r.faction],['Recompensa',r.bounty],['Grupo',r.group]].filter(([,v])=>v).map(([label,val])=>`<div><span>${label}</span>${esc(val)}</div>`).join('')}</div></div>`;}
-function attackBlock(r){return paperBlock('Arsenal & ataques',r.attacks.length?r.attacks.map((a,i)=>`<div class="attack-line"><h4>${esc(a.name)}</h4><div class="attack-meta">${join(['Acerto '+signed(attackHit(r,a)),a.range?'Alcance '+a.range:'',a.critical?'Crítico '+a.critical:''])}</div><div class="attack-damage">${esc(a.damage)} ${esc(a.damageType)}</div>${a.description?`<p>${rich(a.description)}</p>`:''}<button class="roll-btn session-only no-print" data-action="roll-attack" data-record="${esc(r.id)}" data-index="${i}">${icon('dice')}Rolar ataque</button></div>`).join(''):'<p>Registre armas ou ataques na seção Arsenal.</p>');}
-function traitsBlock(r){return r.traits.length?`<div class="paper-section-title"><span>Características & passivas</span><span>${String(r.traits.length).padStart(2,'0')}</span></div><div class="paper-traits">${r.traits.map(t=>`<section class="paper-trait"><h4>${esc(t.name)}</h4><p>${rich(t.description)}</p></section>`).join('')}</div>`:'';}
-function actionCard(r,a,i){const parts=[CATEGORIES[a.category],a.cost,a.range,a.save,a.usage].filter(Boolean);return `<section class="tech-card"><h3>${esc(a.name)}</h3><div class="tech-meta">${parts.map(p=>`<span class="paper-pill">${esc(p)}</span>`).join('')}</div>${a.damage?`<div class="tech-damage">${esc(a.damage)}${a.damageType?` <small style="font-size:.6em;font-weight:650">${esc(a.damageType)}</small>`:''}</div>`:''}<p>${rich(a.description)}</p>${a.damage?`<button class="roll-btn session-only no-print" data-action="roll-action" data-record="${esc(r.id)}" data-index="${i}">${icon('dice')}Rolar dano</button>`:''}</section>`;}
+function attackBlock(r){return paperBlock('Arsenal & ataques',r.attacks.length?r.attacks.map((a,i)=>`<div class="attack-line"><h4>${esc(a.name)}</h4><div class="attack-meta">${join(['Acerto '+signed(attackHit(r,a)),a.range?'Alcance '+a.range:'',a.critical?'Crítico '+a.critical:''])}</div><div class="attack-damage">${esc(a.damage)} ${esc(a.damageType)}</div>${a.description?`${richText(a.description)}`:''}<button class="roll-btn session-only no-print" data-action="roll-attack" data-record="${esc(r.id)}" data-index="${i}">${icon('dice')}Rolar ataque</button></div>`).join(''):'<p>Registre armas ou ataques na seção Arsenal.</p>');}
+function traitsBlock(r){return r.traits.length?`<div class="paper-section-title"><span>Características & passivas</span><span>${String(r.traits.length).padStart(2,'0')}</span></div><div class="paper-traits">${r.traits.map(t=>`<section class="paper-trait"><h4>${esc(t.name)}</h4>${richText(t.description)}</section>`).join('')}</div>`:'';}
+function actionCard(r,a,i){const parts=[CATEGORIES[a.category],a.cost,a.range,a.save,a.usage].filter(Boolean);return `<section class="tech-card"><h3>${esc(a.name)}</h3><div class="tech-meta">${parts.map(p=>`<span class="paper-pill">${esc(p)}</span>`).join('')}</div>${a.damage?`<div class="tech-damage">${esc(a.damage)}${a.damageType?` <small style="font-size:.6em;font-weight:650">${esc(a.damageType)}</small>`:''}</div>`:''}${richText(a.description)}${a.damage?`<button class="roll-btn session-only no-print" data-action="roll-action" data-record="${esc(r.id)}" data-index="${i}">${icon('dice')}Rolar dano</button>`:''}</section>`;}
 function defensesBlock(r){const defs=[['Resistências',r.resistances],['Imunidades',r.immunities],['Vulnerabilidades',r.vulnerabilities],['Sentidos',r.senses],['Idiomas',r.languages]];return defs.some(([,v])=>v)?paperBlock('Defesas & sentidos',defs.filter(([,v])=>v).map(([l,v])=>`<p><strong>${l}:</strong> ${rich(v)}</p>`).join('')):'';}
-function identityPage(r){const narratives=[['Personalidade / presença',r.personality],['Ganchos / desbloqueio',r.hooks]].filter(([,v])=>v);return {kind:'profile',html:paperHeader(r)+`<div class="sheet-body">${portrait(r)}<div class="sheet-main">${stats(r)}${paperBlock('Atributos & perícias',attributes(r)+training(r))}${attackBlock(r)}${defensesBlock(r)}${narratives.length?`<div class="paper-dual">${narratives.map(([title,body])=>paperBlock(title,`<p>${rich(body)}</p>`)).join('')}</div>`:''}${!narratives.length?paperBlock('Perfil',`<p>${rich(r.role||r.style||'Preencha a identidade e a história no editor para compor o perfil.')}</p>`):''}</div></div>`};}
-function combatPage(r){const techniques=r.actions.map((a,i)=>({...a,_i:i})).filter(a=>!['companion','passive'].includes(a.category));const companion=r.actions.map((a,i)=>({...a,_i:i})).filter(a=>['companion','passive'].includes(a.category));return {kind:'combat',html:paperHeader(r,r.name+' / Combate',r.role||r.style||'Técnicas, características e sequência de combate')+stats(r,true)+traitsBlock(r)+(techniques.length?`<h3 class="paper-small-title">Técnicas & ações</h3><div class="tech-grid">${techniques.map(a=>actionCard(r,a,a._i)).join('')}</div>`:r.traits.length?'':'<div class="empty-section">Adicione passivas e técnicas na seção Habilidades.</div>')+(companion.length?`<h3 class="paper-small-title">Ações de companheiro</h3><div class="tech-grid">${companion.map(a=>actionCard(r,a,a._i)).join('')}</div>`:'')+(r.companionEffect?`<div class="paper-banner"><b>Na tripulação</b><br><span>${rich(r.companionEffect)}</span></div>`:'')+(r.tactics?`<div class="paper-banner"><b>Sequência de combate</b><br><span>${rich(r.tactics)}</span></div>`:'')};}
-function modulesPage(r){return {kind:'modules',html:paperHeader(r,r.name+' / Partes destrutíveis','Módulos, pontos fracos e efeitos ao destruir')+`<div class="module-grid">${r.modules.map((m,i)=>`<section class="module ${m.destroyed?'destroyed':''}"><h3>${i+1}. ${esc(m.name)}</h3><div class="module-numbers">CR ${fmtValue(m.cr)} · ${fmtValue(m.hpMax)} PV <span class="session-only"> / ${fmtValue(m.hpCurrent)} atuais</span></div><p>${rich(m.description)}</p><label class="check-line session-only no-print"><input type="checkbox" data-module-check="${i}" data-record="${esc(r.id)}"${m.destroyed?' checked':''}>Destruído</label></section>`).join('')}</div><div class="paper-note"><b>Durante o encontro:</b> aplique manualmente os efeitos descritos ao destruir uma parte. O editor guarda a marcação; ela não recalcula a CR ou as ações do núcleo.</div>`};}
-function notesPage(r){return {kind:'notes',html:paperHeader(r,r.name+' / Dossiê','Contexto, descobertas e notas da campanha')+[ ['História / contexto',r.background],['Tesouros & recompensas',r.treasure] ].filter(([,v])=>v).map(([label,body])=>paperBlock(label,`<p>${rich(body)}</p>`)).join('')+(r.gmNotes?`<div class="paper-note gm-secret"><b>Notas reservadas do narrador</b><br>${rich(r.gmNotes)}</div>`:'')};}
+function identityPage(r){const narratives=[['Personalidade / presença',r.personality],['Ganchos / desbloqueio',r.hooks]].filter(([,v])=>v);return {kind:'profile',html:paperHeader(r)+`<div class="sheet-body">${portrait(r)}<div class="sheet-main">${stats(r)}${paperBlock('Atributos & perícias',attributes(r)+training(r))}${attackBlock(r)}${defensesBlock(r)}${narratives.length?`<div class="paper-dual">${narratives.map(([title,body])=>paperBlock(title,`${richText(body)}`)).join('')}</div>`:''}${!narratives.length?paperBlock('Perfil',`${richText(r.role||r.style||'Preencha a identidade e a história no editor para compor o perfil.')}`):''}</div></div>`};}
+function combatPage(r){const techniques=r.actions.map((a,i)=>({...a,_i:i})).filter(a=>!['companion','passive'].includes(a.category));const companion=r.actions.map((a,i)=>({...a,_i:i})).filter(a=>['companion','passive'].includes(a.category));return {kind:'combat',html:paperHeader(r,r.name+' / Combate',r.role||r.style||'Técnicas, características e sequência de combate')+stats(r,true)+traitsBlock(r)+(techniques.length?`<h3 class="paper-small-title">Técnicas & ações</h3><div class="tech-grid">${techniques.map(a=>actionCard(r,a,a._i)).join('')}</div>`:r.traits.length?'':'<div class="empty-section">Adicione passivas e técnicas na seção Habilidades.</div>')+(companion.length?`<h3 class="paper-small-title">Ações de companheiro</h3><div class="tech-grid">${companion.map(a=>actionCard(r,a,a._i)).join('')}</div>`:'')+(r.companionEffect?`<div class="paper-banner"><b>Na tripulação</b>${richText(r.companionEffect)}</div>`:'')+(r.tactics?`<div class="paper-banner"><b>Sequência de combate</b>${richText(r.tactics)}</div>`:'')};}
+function modulesPage(r){return {kind:'modules',html:paperHeader(r,r.name+' / Partes destrutíveis','Módulos, pontos fracos e efeitos ao destruir')+`<div class="module-grid">${r.modules.map((m,i)=>`<section class="module ${m.destroyed?'destroyed':''}"><h3>${i+1}. ${esc(m.name)}</h3><div class="module-numbers">CR ${fmtValue(m.cr)} · ${fmtValue(m.hpMax)} PV <span class="session-only"> / ${fmtValue(m.hpCurrent)} atuais</span></div>${richText(m.description)}<label class="check-line session-only no-print"><input type="checkbox" data-module-check="${i}" data-record="${esc(r.id)}"${m.destroyed?' checked':''}>Destruído</label></section>`).join('')}</div><div class="paper-note"><b>Durante o encontro:</b> aplique manualmente os efeitos descritos ao destruir uma parte. O editor guarda a marcação; ela não recalcula a CR ou as ações do núcleo.</div>`};}
+function notesPage(r){return {kind:'notes',html:paperHeader(r,r.name+' / Dossiê','Contexto, descobertas e notas da campanha')+[ ['História / contexto',r.background],['Tesouros & recompensas',r.treasure] ].filter(([,v])=>v).map(([label,body])=>paperBlock(label,`${richText(body)}`)).join('')+(r.gmNotes?`<div class="paper-note gm-secret"><b>Notas reservadas do narrador</b>${richText(r.gmNotes)}</div>`:'')};}
 function pagePortrait(r,cls=''){const src=imageSrc(r);return `<div class="model-portrait ${cls}">${src?`<img src="${esc(src)}" alt="Retrato de ${esc(r.name)}" style="object-fit:${r.imageFit};object-position:50% ${clamp(r.imagePosition,0,100)}%">`:`<div class="model-portrait-empty">${icon('person')}</div>`}</div>`;}
 function identitySummary(r){return join([r.type==='threat'||r.type==='boss'?'ND '+r.nd:'Lv '+r.level,r.species,r.age?r.age+' anos':'',r.style]);}
-function profileNarratives(r){return [['Personalidade / presença',r.personality],['Ganchos / desbloqueio',r.hooks]].filter(([,v])=>v).map(([title,body])=>paperBlock(title,`<p>${rich(body)}</p>`)).join('');}
+function profileNarratives(r){return [['Personalidade / presença',r.personality],['Ganchos / desbloqueio',r.hooks]].filter(([,v])=>v).map(([title,body])=>paperBlock(title,`${richText(body)}`)).join('');}
 function worldFacts(r){return [['Nome verdadeiro',r.realName],['Função',r.role],['Ilha / região',r.island],['Facção',r.faction],['Grupo',r.group],['Recompensa',r.bounty]].filter(([,v])=>v).map(([label,body])=>`<div><dt>${label}</dt><dd>${esc(body)}</dd></div>`).join('');}
 function wantedProfile(r){return{kind:'profile',html:`<div class="wanted-masthead"><span>NEW FRONTIER / ${esc(TYPES[r.type])}</span><span>${esc(r.island||'ONE PIECE RPG')}</span></div><div class="wanted-layout"><section class="wanted-poster"><div class="wanted-title">WANTED</div><p class="wanted-subtitle">VIVO OU MORTO</p>${pagePortrait(r,'wanted-photo')}<h2>${esc(r.name)}</h2>${r.subtitle?`<p class="wanted-epithet">${esc(r.subtitle)}</p>`:''}<div class="wanted-bounty">${esc(r.bounty||'RECOMPENSA A DEFINIR')}</div><p class="wanted-small">${esc(r.faction||'ARQUIVO DO NARRADOR')}</p></section><div class="wanted-dossier"><h2 class="model-heading">${esc(r.realName||r.name)}</h2><p class="model-subheading">${identitySummary(r)}</p>${stats(r)}${paperBlock('Atributos & perícias',attributes(r)+training(r))}${attackBlock(r)}${defensesBlock(r)}${r.quote?`<blockquote class="model-quote">“${rich(r.quote)}”</blockquote>`:''}${profileNarratives(r)}</div></div>`};}
 function bestiaryProfile(r){return{kind:'profile',html:`<header class="bestiary-heading"><div><p class="model-kicker">NEW FRONTIER / ARQUIVO DE AMEAÇAS E NPCs</p><h2>${esc(r.name)}</h2><p>${identitySummary(r)}</p>${r.subtitle?`<p class="bestiary-epithet">${esc(r.subtitle)}</p>`:''}</div>${pagePortrait(r,'bestiary-photo')}</header><div class="bestiary-core">${stats(r)}${attributes(r)}${training(r)}</div><div class="bestiary-profile-grid"><div>${attackBlock(r)}${defensesBlock(r)}</div><div>${worldFacts(r)?paperBlock('Características',`<dl class="model-facts">${worldFacts(r)}</dl>`):''}${profileNarratives(r)}${r.quote?`<blockquote class="model-quote">“${rich(r.quote)}”</blockquote>`:''}</div></div>`};}
 function dossierCode(r){let code=0;for(const ch of r.id)code=(Math.imul(code,31)+ch.charCodeAt(0))>>>0;return 'NF-'+code.toString(16).padStart(8,'0').slice(-6).toUpperCase();}
 function marineProfile(r){return{kind:'profile',html:`<header class="marine-heading"><div><p class="model-kicker">ARQUIVO DA MARINHA / NEW FRONTIER</p><h2>RELATÓRIO DE CAMPO</h2><span class="marine-document-code">${dossierCode(r)} · ${esc(TYPES[r.type]).toUpperCase()}</span></div><div class="marine-seal">${icon('compass')}<span>REGISTRO</span></div></header><div class="marine-name"><h2>${esc(r.name)}</h2><p>${esc(r.subtitle||r.role||r.style)}</p></div><div class="marine-profile"><div class="marine-main">${stats(r)}${paperBlock('01 / Identificação',`<p class="marine-identity-line">${identitySummary(r)}</p><dl class="model-facts">${worldFacts(r)}</dl>`)}${paperBlock('02 / Capacidades',attributes(r)+training(r))}${attackBlock(r)}${defensesBlock(r)}</div><aside class="marine-sidebar">${pagePortrait(r,'marine-photo')}<div class="marine-image-caption">REGISTRO VISUAL · ${dossierCode(r)}</div>${r.quote?`<blockquote class="model-quote">“${rich(r.quote)}”</blockquote>`:''}${profileNarratives(r)}</aside></div>`};}
 function journalProfile(r){return{kind:'profile',html:`<header class="journal-heading"><p class="model-kicker">NEW FRONTIER / CRÔNICAS DO MUNDO</p><h2>${esc(r.name)}</h2><p>${esc(r.subtitle||r.role||r.style)}</p></header><div class="journal-profile"><aside><div class="journal-photo-frame">${pagePortrait(r,'journal-photo')}<p>${esc(r.realName||r.name)}</p></div>${r.quote?`<blockquote class="model-quote">“${rich(r.quote)}”</blockquote>`:''}<dl class="model-facts journal-facts">${worldFacts(r)}</dl></aside><div class="journal-story"><p class="journal-intro">${identitySummary(r)}</p>${profileNarratives(r)||paperBlock('Presença em cena',`<p>${esc(r.role||r.style||r.species)}</p>`)}${attackBlock(r)}${defensesBlock(r)}</div></div><div class="journal-abilities">${stats(r)}${paperBlock('Atributos & perícias',attributes(r)+training(r))}</div>`};}
-function tacticalProfile(r){return{kind:'profile',html:paperHeader(r,r.name,r.role||r.style)+stats(r)+`<div class="tactical-profile"><div><div class="tactical-identity"><span>${esc(TYPES[r.type])}</span><strong>${identitySummary(r)}</strong></div>${paperBlock('Atributos & defesas',attributes(r)+training(r))}${attackBlock(r)}${defensesBlock(r)}<div class="tactical-counts"><span><b>${r.actions.length}</b> técnicas / ações</span><span><b>${r.traits.length}</b> passivas</span><span><b>${r.modules.length}</b> partes destrutíveis</span></div>${r.tactics?paperBlock('Leitura do combate',`<p>${rich(r.tactics)}</p>`):''}</div><aside>${pagePortrait(r,'tactical-photo')}${r.quote?`<blockquote class="model-quote">“${rich(r.quote)}”</blockquote>`:''}${profileNarratives(r)}</aside></div>`};}
+function tacticalProfile(r){return{kind:'profile',html:paperHeader(r,r.name,r.role||r.style)+stats(r)+`<div class="tactical-profile"><div><div class="tactical-identity"><span>${esc(TYPES[r.type])}</span><strong>${identitySummary(r)}</strong></div>${paperBlock('Atributos & defesas',attributes(r)+training(r))}${attackBlock(r)}${defensesBlock(r)}<div class="tactical-counts"><span><b>${r.actions.length}</b> técnicas / ações</span><span><b>${r.traits.length}</b> passivas</span><span><b>${r.modules.length}</b> partes destrutíveis</span></div>${r.tactics?paperBlock('Leitura do combate',`${richText(r.tactics)}`):''}</div><aside>${pagePortrait(r,'tactical-photo')}${r.quote?`<blockquote class="model-quote">“${rich(r.quote)}”</blockquote>`:''}${profileNarratives(r)}</aside></div>`};}
 function presentProfile(r,layout){return({wanted:wantedProfile,bestiary:bestiaryProfile,marine:marineProfile,journal:journalProfile,tactical:tacticalProfile}[layout]||identityPage)(r);}
-function flatAction(r,a,i){return `<section class="flat-action"><h4>${esc(a.name)}</h4><p class="flat-meta">${join([CATEGORIES[a.category],a.cost,a.range,a.save,a.usage])}</p>${a.damage?`<p class="flat-damage">${esc(a.damage)} ${esc(a.damageType)}</p>`:''}<p>${rich(a.description)}</p>${a.damage?`<button class="roll-btn session-only no-print" data-action="roll-action" data-record="${esc(r.id)}" data-index="${i}">${icon('dice')}Rolar dano</button>`:''}</section>`;}
+function flatAction(r,a,i){return `<section class="flat-action"><h4>${esc(a.name)}</h4><p class="flat-meta">${join([CATEGORIES[a.category],a.cost,a.range,a.save,a.usage])}</p>${a.damage?`<p class="flat-damage">${esc(a.damage)} ${esc(a.damageType)}</p>`:''}${richText(a.description)}${a.damage?`<button class="roll-btn session-only no-print" data-action="roll-action" data-record="${esc(r.id)}" data-index="${i}">${icon('dice')}Rolar dano</button>`:''}</section>`;}
 function presentCombat(r,layout){
- if(layout==='bestiary')return{kind:'combat',html:paperHeader(r,r.name+' / Combate',r.role||r.style)+stats(r,true)+attackBlock(r)+(r.traits.length?`<h3 class="flat-section-title">Características</h3><div class="flat-traits">${r.traits.map(t=>`<p><b>${esc(t.name)}.</b> ${rich(t.description)}</p>`).join('')}</div>`:'')+(r.actions.length?`<h3 class="flat-section-title">Ações & técnicas</h3><div class="flat-actions">${r.actions.map((a,i)=>flatAction(r,a,i)).join('')}</div>`:'')+(r.companionEffect?`<div class="paper-banner"><b>Na tripulação</b><br>${rich(r.companionEffect)}</div>`:'')+(r.tactics?`<div class="paper-banner"><b>Sequência de combate</b><br>${rich(r.tactics)}</div>`:'')};
- if(layout==='tactical')return{kind:'combat',html:paperHeader(r,r.name+' / Combate',r.role||r.style)+stats(r,true)+`<div class="tactical-combat"><aside>${attackBlock(r)}${traitsBlock(r)}</aside><div>${Object.entries(CATEGORIES).filter(([cat])=>r.actions.some(a=>a.category===cat)).map(([cat,label])=>`<section class="tactical-action-group"><h3>${esc(label)}</h3><div class="tech-grid">${r.actions.map((a,i)=>({...a,_i:i})).filter(a=>a.category===cat).map(a=>actionCard(r,a,a._i)).join('')}</div></section>`).join('')}</div></div>`+(r.companionEffect?`<div class="paper-banner"><b>Na tripulação</b><br>${rich(r.companionEffect)}</div>`:'')+(r.tactics?`<div class="paper-banner"><b>Sequência de combate</b><br>${rich(r.tactics)}</div>`:'')};
+ if(layout==='bestiary')return{kind:'combat',html:paperHeader(r,r.name+' / Combate',r.role||r.style)+stats(r,true)+attackBlock(r)+(r.traits.length?`<h3 class="flat-section-title">Características</h3><div class="flat-traits">${r.traits.map(t=>`<div class="flat-trait"><b>${esc(t.name)}.</b>${richText(t.description)}</div>`).join('')}</div>`:'')+(r.actions.length?`<h3 class="flat-section-title">Ações & técnicas</h3><div class="flat-actions">${r.actions.map((a,i)=>flatAction(r,a,i)).join('')}</div>`:'')+(r.companionEffect?`<div class="paper-banner"><b>Na tripulação</b>${richText(r.companionEffect)}</div>`:'')+(r.tactics?`<div class="paper-banner"><b>Sequência de combate</b>${richText(r.tactics)}</div>`:'')};
+ if(layout==='tactical')return{kind:'combat',html:paperHeader(r,r.name+' / Combate',r.role||r.style)+stats(r,true)+`<div class="tactical-combat"><aside>${attackBlock(r)}${traitsBlock(r)}</aside><div>${Object.entries(CATEGORIES).filter(([cat])=>r.actions.some(a=>a.category===cat)).map(([cat,label])=>`<section class="tactical-action-group"><h3>${esc(label)}</h3><div class="tech-grid">${r.actions.map((a,i)=>({...a,_i:i})).filter(a=>a.category===cat).map(a=>actionCard(r,a,a._i)).join('')}</div></section>`).join('')}</div></div>`+(r.companionEffect?`<div class="paper-banner"><b>Na tripulação</b>${richText(r.companionEffect)}</div>`:'')+(r.tactics?`<div class="paper-banner"><b>Sequência de combate</b>${richText(r.tactics)}</div>`:'')};
  return combatPage(r);
 }
-function extraPageContent(r,p,layout){return{kind:'extra_'+p.id,title:p.title,html:paperHeader(r,p.title,p.subtitle||r.name)+`<div class="extra-page-blocks">${p.blocks.map(b=>paperBlock(b.title||'Anotações',b.body?`<p>${rich(b.body)}</p>`:'<div class="ruled-note" aria-label="Seção em branco"></div>')).join('')}</div>`};}
+function extraPageContent(r,p,layout){return{kind:'extra_'+p.id,title:p.title,html:paperHeader(r,p.title,p.subtitle||r.name)+`<div class="extra-page-blocks">${p.blocks.map(b=>paperBlock(b.title||'Anotações',b.body?`${richText(b.body)}`:'<div class="ruled-note" aria-label="Seção em branco"></div>')).join('')}</div>`};}
 function styledPage(r,page,layoutOverride='inherit'){
  const layout=pageLayout(r,page.kind,layoutOverride);let result=page;
  if(page.kind==='profile')result=presentProfile(r,layout);else if(page.kind==='combat')result=presentCombat(r,layout);
@@ -518,7 +718,7 @@ async function importFile(file){
  try{const raw=JSON.parse(await file.text());if(raw.format!=='new-frontier-dossiers'&&!Array.isArray(raw.records))throw new Error('Selecione um JSON exportado por este editor.');const candidate=normalizeState(raw);if(!candidate.records.length)throw new Error('O arquivo não contém fichas.');if(db.folders.length+candidate.folders.length>300)throw new Error('O arquivo resultante teria pastas demais. Importe em partes.');if(db.records.length+candidate.records.length>300)throw new Error('O arquivo resultante teria mais de 300 fichas.');confirmAction('Importar '+candidate.records.length+' '+(candidate.records.length===1?'ficha':'fichas'),`<p style="color:var(--ink)">${candidate.records.map(r=>esc(r.name)).join('<br>')}</p><p style="margin-top:12px">As fichas serão adicionadas como novas cópias ao seu arquivo.</p>`,'Adicionar fichas',()=>{const folderMap=mergeImportedFolders(candidate);for(const r of candidate.records){r.folderId=folderMap.get(r.folderId)||'';if(r.imageRef&&candidate.assets[r.imageRef]){r.image=candidate.assets[r.imageRef];r.imageRef='';}else if(r.imageRef){r.imageRef='';}r.id=uid();}db.records.push(...candidate.records);db.activeId=candidate.records[0].id;db.activeFolder='__all__';closeModal();renderAll();touch();notify('Fichas importadas.');});}catch(e){notify('Não foi possível importar: '+e.message,true);}
 }
 async function uploadPortrait(file){if(!file||!current())return;if(!/^image\/(png|jpeg|webp|gif)$/i.test(file.type))return notify('Escolha uma imagem PNG, JPG, GIF ou WebP.',true);if(file.size>15*1024*1024)return notify('A imagem deve ter até 15 MB.',true);const recordId=current().id;try{const url=URL.createObjectURL(file);let img;try{img=await new Promise((resolve,reject)=>{const im=new Image();im.onload=()=>resolve(im);im.onerror=()=>reject(new Error('Imagem inválida'));im.src=url;});}finally{URL.revokeObjectURL(url);}if(!img.naturalWidth||!img.naturalHeight||img.naturalWidth*img.naturalHeight>60000000)throw new Error('Imagem muito grande ou inválida');const factor=Math.min(1,1200/Math.max(img.naturalWidth,img.naturalHeight));const c=document.createElement('canvas');c.width=Math.max(1,Math.round(img.naturalWidth*factor));c.height=Math.max(1,Math.round(img.naturalHeight*factor));const ctx=c.getContext('2d');ctx.drawImage(img,0,0,c.width,c.height);const data=c.toDataURL('image/webp',.86);if(!validImage(data))throw new Error('O navegador não conseguiu converter a imagem');const r=db.records.find(r=>r.id===recordId);if(!r)return;r.image=data;r.imageRef='';r.updatedAt=new Date().toISOString();scheduleSave();renderAll();notify('Retrato atualizado.');}catch(e){notify('Não foi possível abrir a imagem: '+e.message,true);}}
-function help(){showModal('Seu arquivo de bordo','Um editor independente para as fichas do Narrador.',`<ol class="help-list"><li><b>Nova ficha:</b> comece em branco ou use um modelo. Billy, Hadrien e os Wolcott foram preenchidos com os dados dos PDFs enviados.</li><li><b>Editar ficha:</b> o botão abre uma janela ampla, separada da consulta. Números calcula modificadores, proficiências e salvaguardas. PV, PP, CR, CD, dano e ND são definidos por você.</li><li><b>Páginas:</b> escolha entre seis modelos, combine modelos por página e crie páginas extras com seções livres. As cores e os modelos ficam salvos por personagem.</li><li><b>Visual:</b> escolha uma paleta da ficha ou ajuste papel, blocos, textos, títulos, bordas e cabeçalho. Copiar e Colar estilo reaproveita a aparência em outro personagem.</li><li><b>Pastas:</b> use + ao lado de Pastas para criar uma pasta ou subpasta. Arraste fichas para elas ou use Mover. A engrenagem permite renomear e excluir pastas sem apagar os personagens. O botão no alto recolhe a barra lateral.</li><li><b>Ficha:</b> mostra a ficha em largura ampla para consulta. <b>Mesa:</b> acompanha PV e PP, marca módulos e permite rolar ataques e dados. A rolagem de dano é normal; efeitos de crítico e custos são manuais.</li><li><b>Grupo:</b> reúne fichas com o mesmo nome no campo Grupo / encontro.</li><li><b>PDF:</b> escolha as partes e use “Salvar como PDF” na janela do navegador. Notas reservadas ficam fora da impressão por padrão.</li><li><b>Exportar:</b> JSON guarda uma ficha ou o arquivo completo. HTML leva o editor com todas as fichas. Importar adiciona cópias de JSONs deste editor.</li><li><b>Salvamento:</b> automático neste navegador. Exporte um backup para trocar de computador, navegador ou guardar antes de limpar os dados.</li></ol><p class="micro muted">As partes da Auditoria são um modelo modular. O PDF enviado não informa os números do núcleo nesta versão: complete-os antes de usar. O editor não converte automaticamente criaturas do Monster Hunter para OP RPG.</p>`);}
+function help(){showModal('Seu arquivo de bordo','Um editor independente para as fichas do Narrador.',`<ol class="help-list"><li><b>Nova ficha:</b> comece em branco ou use um modelo. Billy, Hadrien e os Wolcott foram preenchidos com os dados dos PDFs enviados.</li><li><b>Editar ficha:</b> o botão abre uma janela ampla, separada da consulta. Números calcula modificadores, proficiências e salvaguardas. PV, PP, CR, CD, dano e ND são definidos por você.</li><li><b>Formatação:</b> selecione um trecho nas descrições e use a barra para aplicar negrito, itálico, sublinhado, tachado e marca-texto. Organize o texto em listas, subtítulos e citações. “Ver texto” confere o resultado. Ctrl+B, Ctrl+I e Ctrl+U também funcionam (⌘ no Mac). A formatação acompanha a ficha, o PDF e os arquivos exportados.</li><li><b>Páginas:</b> escolha entre seis modelos, combine modelos por página e crie páginas extras com seções livres. As cores e os modelos ficam salvos por personagem.</li><li><b>Visual:</b> escolha uma paleta da ficha ou ajuste papel, blocos, textos, títulos, bordas e cabeçalho. Copiar e Colar estilo reaproveita a aparência em outro personagem.</li><li><b>Pastas:</b> use + ao lado de Pastas para criar uma pasta ou subpasta. Arraste fichas para elas ou use Mover. A engrenagem permite renomear e excluir pastas sem apagar os personagens. O botão no alto recolhe a barra lateral.</li><li><b>Ficha:</b> mostra a ficha em largura ampla para consulta. <b>Mesa:</b> acompanha PV e PP, marca módulos e permite rolar ataques e dados. A rolagem de dano é normal; efeitos de crítico e custos são manuais.</li><li><b>Grupo:</b> reúne fichas com o mesmo nome no campo Grupo / encontro.</li><li><b>PDF:</b> escolha as partes e use “Salvar como PDF” na janela do navegador. Notas reservadas ficam fora da impressão por padrão.</li><li><b>Exportar:</b> JSON guarda uma ficha ou o arquivo completo. HTML leva o editor com todas as fichas. Importar adiciona cópias de JSONs deste editor.</li><li><b>Salvamento:</b> automático neste navegador. Exporte um backup para trocar de computador, navegador ou guardar antes de limpar os dados.</li></ol><p class="micro muted">As partes da Auditoria são um modelo modular. O PDF enviado não informa os números do núcleo nesta versão: complete-os antes de usar. O editor não converte automaticamente criaturas do Monster Hunter para OP RPG.</p>`);}
 function handleField(e){const input=e.target;if(!input.matches('[data-path]'))return;const isChoice=input.tagName==='SELECT'||input.type==='checkbox';if(e.type==='input'&&isChoice||e.type==='change'&&!isChoice)return;const r=current();if(!r)return;const path=input.dataset.path;let value=input.type==='checkbox'?input.checked:input.hasAttribute('data-number')||input.type==='range'?(input.value===''?'':num(input.value)):input.value;setPath(r,path,value);
  if(path.startsWith('abilities.')){const k=path.split('.')[1];r.abilities[k]=clamp(Math.floor(num(value,10)),1,40);}
  if(path==='level')r.level=clamp(Math.floor(num(value,1)),1,30);
